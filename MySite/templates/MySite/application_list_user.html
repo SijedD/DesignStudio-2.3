@@ -2,6 +2,17 @@
 
 {% block content %}
    <a href="{% url 'Applications-create' %}">Создать Заявку</a>
+
+<form method="get">
+    <label for="status">Статус</label>
+    <select name="status">
+        <option value="">Все</option>
+        <option value="Новая">Новая</option>
+        <option value="Принято в работу">Принято в работу</option>
+        <option value="Выполнено">Выполнено</option>
+    </select>
+    <input type="submit" value="Пременить">
+</form>
 {% for i in applications %}
 
 <br><h2>Название: {{i.title}}</h2>

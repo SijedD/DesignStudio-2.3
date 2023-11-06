@@ -43,7 +43,12 @@ class applicationByUserListView(LoginRequiredMixin, generic.ListView):
     context_object_name = 'applications'
 
     def get_queryset(self):
-        return Applications.objects.filter(borrower=self.request.user)
+        status = self.request.GET.get('status')
+        queryset = Applications.objects.filter(borrower=self.request.user).order_by('-date_create').order_by(
+            '-time_create')
+        if status:
+            queryset = Applications.objects.filter(status=status)
+        return queryset
 
 
 class ApplicationsCreate(LoginRequiredMixin, CreateView):
