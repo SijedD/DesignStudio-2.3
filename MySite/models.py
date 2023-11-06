@@ -36,7 +36,7 @@ class Applications(models.Model):
 
     title = models.CharField(max_length=100)
     deck = models.TextField(max_length=1000, default='something')
-    category = models.ForeignKey('category', on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey('category', on_delete=models.CASCADE, null=True)
     date_create = models.DateField(default=datetime.now, verbose_name="Дата создания")
     time_create = models.TimeField(default=datetime.now, verbose_name="Время создания")
     image = models.ImageField(upload_to="media/", verbose_name="Фотография",

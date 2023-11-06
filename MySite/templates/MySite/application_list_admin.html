@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-   <a href="{% url 'Applications-create' %}">Создать Заявку</a>
-    <a href="{% url 'Category-create' %}">Создать Категорию</a>
+   <a href="{% url 'Applications-create' %}">Создать Заявку</a><br>
+    <a href="{% url 'Category-create' %}">Создать Категорию</a><br>
+    <a href="{% url 'CategoryDeleteList'%}">Удалить Категорию</a><br>
 
 <form method="get">
     <label for="status">Статус</label>

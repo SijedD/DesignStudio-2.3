@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Категории</h1>
+{% for i in CategoryDeleteList %}
+<h2>Название категории: {{i.name}}</h2>
+<a href="{% url 'Category-delete' i.id %}">Удалить</a><br><br>
+{% endfor %}
+
+{% endblock %}

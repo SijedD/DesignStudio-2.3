@@ -63,7 +63,7 @@ class ApplicationsCreate(LoginRequiredMixin, CreateView):
 
 class ApplicationsDelete(DeleteView):
     model = Applications
-    success_url = reverse_lazy('applicationByAdminListView')
+    success_url = reverse_lazy('applicationByUserListView')
     context_object_name = 'application'
 
 
@@ -83,3 +83,15 @@ class createCategory(CreateView):
     model = Category
     fields = ['name']
     success_url = reverse_lazy('applicationByAdminListView')
+
+
+class CategoryDelete(DeleteView):
+    model = Category
+    success_url = reverse_lazy('applicationByAdminListView')
+    context_object_name = 'CategoryDelete'
+
+
+class CategoryByAdminListView(generic.ListView):
+    model = Category
+    template_name = 'MySite/Category_delete.html'
+    context_object_name = 'CategoryDeleteList'

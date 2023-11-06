@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+    <p>Удалить категорию: {{ CategoryDelete.name }}?</p>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <input type="submit" action="" value="Да, удалить">
+    </form>
+{% endblock %}

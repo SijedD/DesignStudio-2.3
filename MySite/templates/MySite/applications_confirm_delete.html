@@ -3,7 +3,7 @@
 {% block content %}
 {% if application.status == 'Новая' %}
     <h1>Delete Book</h1>
-    <p>Are you sure you want to delete the book: {{ application.title }}?</p>
+    <p>Удалить эту заявку: {{ application.title }}?</p>
     <form action="" method="POST">
       {% csrf_token %}
       <input type="submit" action="" value="Да, удалить">
