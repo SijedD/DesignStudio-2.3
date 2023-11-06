@@ -19,12 +19,6 @@ class RegisterUserForm(forms.ModelForm):
                                 widget=forms.PasswordInput,
                                 help_text='Повторите тот же самый пароль еще раз')
 
-    def clean_password1(self):
-        password1 = self.cleaned_data['password1']
-        if password1:
-            password_validation.validate_password(password1)
-        return password1
-
     def clean(self):
         super().clean()
         password1 = self.cleaned_data['password1']
@@ -59,4 +53,3 @@ class RegisterUserForm(forms.ModelForm):
     class Meta:
         model = AdvUser
         fields = ('username', 'name', 'email', 'password1', 'password2')
-

@@ -2,9 +2,9 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-from django.views.generic.edit import DeleteView
+from django.views.generic.edit import DeleteView, UpdateView
 from .forms import *
-from .models import Applications
+from .models import Applications, Category
 from django.views import generic
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 
@@ -63,5 +63,23 @@ class ApplicationsCreate(LoginRequiredMixin, CreateView):
 
 class ApplicationsDelete(DeleteView):
     model = Applications
-    success_url = reverse_lazy('applicationByUserListView')
+    success_url = reverse_lazy('applicationByAdminListView')
     context_object_name = 'application'
+
+
+class ApplicationsUpdate(UpdateView):
+    model = Applications
+    fields = ['title', 'deck', 'category', 'image', 'status']
+    success_url = reverse_lazy('applicationByAdminListView')
+
+
+class applicationByAdminListView(generic.ListView):
+    model = Applications
+    template_name = 'MySite/application_list_admin.html'
+    context_object_name = 'applications'
+
+
+class createCategory(CreateView):
+    model = Category
+    fields = ['name']
+    success_url = reverse_lazy('applicationByAdminListView')

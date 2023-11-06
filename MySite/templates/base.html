@@ -21,7 +21,6 @@
             {% block sidebar %}
             <ul class="sidebar-nav">
                 <li><a href="{% url 'index' %}">Главная</a></li>
-                <li><a href="applications.html">All</a></li>
             </ul>
 
             <ul class="sidebar-nav">
@@ -41,9 +40,7 @@
             <hr>
             <ul class="sidebar-nav">
                 <li>Заказы</li>
-                {% if perms.catalog.can_mark_returned %}
-                <li><a href="">Все заказы</a></li>
-                {% endif %}
+                <li><a href="{% url 'applicationByAdminListView' %}">Все заказы</a></li>
             </ul>
             {% endif %}
 

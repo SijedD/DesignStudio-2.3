@@ -2,6 +2,7 @@
 
 {% block content %}
    <a href="{% url 'Applications-create' %}">Создать Заявку</a>
+    <a href="{% url 'Category-create' %}">Создать Категорию</a>
 
 <form method="get">
     <label for="status">Статус</label>
@@ -15,13 +16,14 @@
 </form>
 {% for i in applications %}
 
-<br><h2>Название: {{i.title}}</h2>
+<h2>Название: {{i.title}}</h2>
 <h2>Дата: {{i.date_create}}</h2>
 <h2>Время: {{i.time_create}}</h2>
 <h2>Описание: {{i.deck}}</h2>
 <h2>Категория: {{i.category}}</h2>
 <img src="{{i.image.url}}" width="450px" height="300px"/>
-<h2>Статус: {{i.status}}</h2>
+<h2>Статус: {{i.status}}</h2><br><br>
     <a href="{% url 'Applications-delete' i.id %}">Удалить</a><br><br>
+    <a href="{% url 'ApplicationsUpdate' i.id %}">Обновить Данные</a><br><br>
 {% endfor %}
 {% endblock %}
