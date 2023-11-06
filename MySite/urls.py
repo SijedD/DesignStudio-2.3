@@ -12,5 +12,6 @@ urlpatterns = [
     path('Applications/admin', views.applicationByAdminListView.as_view(), name='applicationByAdminListView'),
     path('Applications/<int:pk>/update/', views.ApplicationsUpdate.as_view(), name='ApplicationsUpdate'),
     path('Applications/createCategory/', views.createCategory.as_view(), name='Category-create'),
-
+    path('Applications/listCategory/', views.CategoryByAdminListView.as_view(), name='CategoryDeleteList'),
+    path('Category/<int:pk>/delete/', views.CategoryDelete.as_view(), name='Category-delete'),
 ]

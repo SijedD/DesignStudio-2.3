@@ -47,7 +47,7 @@ class applicationByUserListView(LoginRequiredMixin, generic.ListView):
         queryset = Applications.objects.filter(borrower=self.request.user).order_by('-date_create').order_by(
             '-time_create')
         if status:
-            queryset = Applications.objects.filter(status=status)
+            queryset = queryset.filter(status=status)
         return queryset
 
 
