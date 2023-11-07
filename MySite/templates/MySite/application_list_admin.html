@@ -14,6 +14,7 @@
     </select>
     <input type="submit" value="Пременить">
 </form>
+    {% if application %}
 {% for i in applications %}
 
 <h2>Название: {{i.title}}</h2>
@@ -26,4 +27,7 @@
     <a href="{% url 'Applications-delete' i.id %}">Удалить</a><br><br>
     <a href="{% url 'ApplicationsUpdate' i.id %}">Обновить Данные</a><br><br>
 {% endfor %}
+    {% else %}
+<p>Нету заявок</p>
+    {% endif%}
 {% endblock %}

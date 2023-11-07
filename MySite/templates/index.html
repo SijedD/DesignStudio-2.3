@@ -3,15 +3,16 @@
 {% block content %}
 <h1>Заявки</h1>
 <h2>Количество заявок, находящихся в статусе «Принято в работу»: {{ num_AcceptedForWork }}</h2><br>
+    {% if application %}
 {% for i in application %}
-
 <h2>Название: {{i.title}}</h2>
 <h2>Дата: {{i.date_create}}</h2>
 <h2>Время: {{i.time_create}}</h2>
 <h2>Категория: {{i.category}}</h2>
 <img src="{{i.image.url}}" width="450px" height="300px"/>
 <h2>Статус: {{i.status}}</h2><br><br>
-
 {% endfor %}
-
+{% else %}
+<p>Нету заявок</p>
+{% endif%}
 {% endblock %}
