@@ -69,8 +69,9 @@ class ApplicationsDelete(DeleteView):
 
 class ApplicationsUpdate(UpdateView):
     model = Applications
-    fields = ['title', 'deck', 'category', 'image', 'status']
     success_url = reverse_lazy('applicationByAdminListView')
+    form_class = ApplicationUpdateForm
+
 
 
 class applicationByAdminListView(generic.ListView):

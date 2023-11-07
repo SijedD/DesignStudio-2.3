@@ -5,7 +5,7 @@ from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 
-from .models import AdvUser
+from .models import *
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -53,3 +53,23 @@ class RegisterUserForm(forms.ModelForm):
     class Meta:
         model = AdvUser
         fields = ('username', 'name', 'email', 'password1', 'password2')
+
+
+class ApplicationUpdateForm(ModelForm):
+    class Meta:
+        model = Applications
+        fields = ('status', 'comment', 'design_image')
+
+    def clean(self):
+        comment = self.cleaned_data.get('comment')
+        status = self.cleaned_data.get('status')
+        design_image = self.cleaned_data.get('design_image')
+
+        if status == 'Выполнено' and design_image == None:
+            raise ValidationError('Меняя статус на "Выполнено", прикрепите изображение дизайна')
+        if status == 'Принято в работу' and design_image:
+            raise ValidationError('Меняя статус на "Принято в работу", можно оставить только комментарий, ')
+        if status == 'Принято в работу' and not comment:
+            raise ValidationError('Меняя статус на "Принято в работу", оставьте комментарий')
+        if status == 'Выполнено' and comment:
+            raise ValidationError('Меняя статус на "Выполнено", нельзя оставлять комментарий')

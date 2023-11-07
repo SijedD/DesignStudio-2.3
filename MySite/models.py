@@ -21,7 +21,7 @@ class Meta(AbstractUser.Meta):
 
 class Category(models.Model):
     name = models.CharField(max_length=200,
-                            help_text="Введите категорию")
+                            help_text="Введите категорию", unique=True)
 
     def __str__(self):
         return self.name
@@ -43,11 +43,22 @@ class Applications(models.Model):
                               help_text="Разрешается формата файла только jpg, jpeg, png, bmp",
                               validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'bmp']),
                                           validate_image])
+
+    design_image = models.ImageField(upload_to='media/', verbose_name='Дизайн',
+                                     help_text="Разрешается формата файла только jpg, jpeg, png, bmp",
+                                     validators=[
+                                         FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'bmp']),
+                                         validate_image], default=None, null=True, blank=True)
+    comment = models.TextField(max_length=1000, default='something', null=True, blank=True)
+
     REQUEST_STATUS = (
         ('Новая', 'Новая'),
         ('Принято в работу', 'Принято в работу'),
         ('Выполнено', 'Выполнено'),
+
     )
+
+
     status = models.CharField(
         max_length=16,
         choices=REQUEST_STATUS,
@@ -55,6 +66,7 @@ class Applications(models.Model):
         blank=True,
         verbose_name="Статус")
     borrower = models.ForeignKey(AdvUser, on_delete=models.CASCADE, null=True, blank=True)
+
 
     def __str__(self):
         return self.title

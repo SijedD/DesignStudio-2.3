@@ -7,7 +7,10 @@
     <table>
     {{ form.as_table }}
     </table>
+    {% if applications.status == 'Выполнено' or applications.status == 'Принято в работу' %}
+    <p>Вы не можете обновить статус данной заявки</p>
+    {% else %}
     <input type="submit" value="Submit">
-    
+    {% endif %}
 </form>
 {% endblock %}
