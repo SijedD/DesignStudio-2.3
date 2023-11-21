@@ -1,7 +1,6 @@
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from django.views.generic.edit import DeleteView, UpdateView
 from .forms import *
 from .models import Applications, Category
@@ -77,7 +76,7 @@ class ApplicationsUpdate(UpdateView):
 class applicationByAdminListView(generic.ListView):
     model = Applications
     template_name = 'MySite/application_list_admin.html'
-    context_object_name = 'applications'
+    context_object_name = 'applicationsAdmin'
 
 
 class createCategory(CreateView):
