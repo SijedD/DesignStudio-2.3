@@ -13,15 +13,18 @@
     </select>
     <input type="submit" value="Пременить">
 </form>
-
-{% for i in applications %}
-<br><h2>Название: {{i.title}}</h2>
-<h2>Дата: {{i.date_create}}</h2>
-<h2>Время: {{i.time_create}}</h2>
-<h2>Описание: {{i.deck}}</h2>
-<h2>Категория: {{i.category}}</h2>
-<img src="{{i.image.url}}" width="450px" height="300px"/>
-<h2>Статус: {{i.status}}</h2>
-    <a href="{% url 'Applications-delete' i.id %}">Удалить</a><br><br>
-{% endfor %}
+{% if applications %}
+  {% for application in applications %}
+    <br><h2>Название: {{ application.title }}</h2>
+    <h2>Дата: {{ application.date_create }}</h2>
+    <h2>Время: {{ application.time_create }}</h2>
+    <h2>Описание: {{ application.deck }}</h2>
+    <h2>Категория: {{ application.category }}</h2>
+    <img src="{{ application.image.url }}" width="450px" height="300px"/>
+    <h2>Статус: {{ application.status }}</h2>
+    <a href="{% url 'Applications-delete' application.id %}">Удалить</a><br><br>
+  {% endfor %}
+{% else %}
+  <p>Нету заявок</p>
+{% endif %}
 {% endblock %}
